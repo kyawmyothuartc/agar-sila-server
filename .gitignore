@@ -1,0 +1,16 @@
+# python cache
+__pycache__/
+
+# pytest, coverage
+.coverage
+.coverage.*
+coverage.xml
+.pytest_cache
+
+# build system
+*.egg-info
+/build
+/dist
+
+# pycharm
+.idea/

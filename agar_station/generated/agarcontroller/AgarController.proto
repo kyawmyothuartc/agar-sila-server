@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+import "SiLAFramework.proto";
+
+package sila2.org.silastandard.core.agarcontroller.v1;
+
+/* Agar Streaking SiLA2 compatible controller */
+service AgarController {
+  /* Turn On/Off Ring Light */
+  rpc RingLightLamp (sila2.org.silastandard.core.agarcontroller.v1.RingLightLamp_Parameters) returns (sila2.org.silastandard.core.agarcontroller.v1.RingLightLamp_Responses) {}
+  /* Open Close Ring Light Motor */
+  rpc RingLightMotor (sila2.org.silastandard.core.agarcontroller.v1.RingLightMotor_Parameters) returns (sila2.org.silastandard.core.agarcontroller.v1.RingLightMotor_Responses) {}
+}
+
+/* Parameters for RingLightLamp */
+message RingLightLamp_Parameters {
+  sila2.org.silastandard.Boolean OnOff = 1;  /* true-On; false-Off Ring Light */
+}
+
+/* Responses of RingLightLamp */
+message RingLightLamp_Responses {
+}
+
+/* Parameters for RingLightMotor */
+message RingLightMotor_Parameters {
+  sila2.org.silastandard.Boolean OnOff = 1;  /* true-On; false-Off Ring Light Motor */
+}
+
+/* Responses of RingLightMotor */
+message RingLightMotor_Responses {
+}

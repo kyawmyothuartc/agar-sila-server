@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Feature SiLA2Version="1.0" FeatureVersion="1.0" MaturityLevel="Normative" Originator="org.silastandard" Category="core"
+         xmlns="http://www.sila-standard.org"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.sila-standard.org https://gitlab.com/SiLA2/sila_base/raw/master/schema/FeatureDefinition.xsd">
+<Identifier>AgarController</Identifier>
+<DisplayName>Agar Controller</DisplayName>
+<Description>Agar Streaking SiLA2 compatible controller</Description>
+
+<!-- <Property>
+  <Identifier>CheckAGVBattery</Identifier>
+  <DisplayName>Check AGV Battery</DisplayName>
+  <Description>Check MiR's battery level in percentage (%)</Description>
+  <Observable>No</Observable>
+  <DataType>
+    <Basic>Integer</Basic>
+  </DataType>
+</Property>
+
+<Property>
+  <Identifier>CheckAGVState</Identifier>
+  <DisplayName>Check AGV State</DisplayName>
+  <Description>Return the AGV state -
+    0(None),
+    1(Starting),
+    2(Shutting Down),
+    3(Ready),
+    4(Pause),
+    5(Executing),
+    6(Aborted),
+    7(Completed),
+    8(Docked),
+    9(Docking),
+  </Description>
+  <Observable>No</Observable>
+  <DataType>
+    <Basic>Integer</Basic>
+  </DataType>
+</Property>
+
+<Property>
+  <Identifier>CheckAGVLocation</Identifier>
+  <DisplayName>Check AGV Location</DisplayName>
+  <Description>Check AGV location and return the station no. where it is currently at</Description>
+  <Observable>No</Observable>
+  <DataType>
+    <Basic>Integer</Basic>
+  </DataType>
+</Property> -->
+
+<Command>
+  <Identifier>RingLightLamp</Identifier>
+  <DisplayName>Ring Light Lamp</DisplayName>
+  <Description>Turn On/Off Ring Light</Description>
+  <Observable>No</Observable>
+  <Parameter>
+    <Identifier>OnOff</Identifier>
+    <DisplayName>On Off</DisplayName>
+    <Description>true-On; false-Off Ring Light</Description>
+    <DataType>
+      <Basic>Boolean</Basic>
+    </DataType>
+  </Parameter>
+  <!-- <Response>
+    <Identifier>Status</Identifier>
+    <DisplayName>Status</DisplayName>
+    <Description>Status for mobile manipulator has successfully moved or not</Description>
+    <DataType>
+      <Basic>Boolean</Basic>
+    </DataType>
+  </Response> -->
+</Command>
+
+<Command>
+  <Identifier>RingLightMotor</Identifier>
+  <DisplayName>Ring Light Motor</DisplayName>
+  <Description>Open Close Ring Light Motor</Description>
+  <Observable>No</Observable>
+  <Parameter>
+    <Identifier>OnOff</Identifier>
+    <DisplayName>On Off</DisplayName>
+    <Description>true-On; false-Off Ring Light Motor</Description>
+    <DataType>
+      <Basic>Boolean</Basic>
+    </DataType>
+  </Parameter>
+  <!-- <Response>
+    <Identifier>Executed</Identifier>
+    <DisplayName>Executed</DisplayName>
+    <Description>Executed successfully or not</Description>
+    <DataType>
+      <Basic>Boolean</Basic>
+    </DataType>
+  </Response> -->
+</Command>
+
+
+
+</Feature>

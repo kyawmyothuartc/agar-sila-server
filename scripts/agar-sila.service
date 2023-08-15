@@ -1,0 +1,15 @@
+[Unit]
+Description=SiLA2 server for agar station
+After=network.target
+
+[Service]
+User=user
+WorkingDirectory=/home/user/repo/agar-sila-server
+#Environment="PATH=/home/user/.local/share/virtualenvs/..."
+ExecStart=/bin/bash /home/user/repo/agar-sila-server/scripts/start-sila-server.sh
+Restart=on-failure
+StartLimitInterval=30
+KillSignal=SIGQUIT
+
+[Install]
+WantedBy=multi-user.target

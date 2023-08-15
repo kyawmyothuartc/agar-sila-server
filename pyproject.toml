@@ -1,0 +1,35 @@
+[project]
+name = "agar_station"
+version = "0.0.0"
+requires-python = ">=3.7"
+dependencies = [
+    "sila2",
+    "typer",
+]
+
+[build-system]
+requires = ["setuptools>=0.61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["agar_station*"]
+
+[tool.setuptools.package-data]
+"agar_station.generated" = [
+    "*/*.sila.xml",
+    "*/*.proto",
+]
+
+[tool.black]
+line-length = 120
+fast = true
+
+[tool.isort]
+line_length = 120
+profile = "black"
+skip = ["build/"]
+
+[tool.flake8]
+max-line-length = 120
+extend-ignore = "E203,E501,W293"
+exclude = ["build/", "main.py"]
