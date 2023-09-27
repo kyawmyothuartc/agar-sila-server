@@ -8,8 +8,20 @@ package sila2.org.silastandard.core.agarcontroller.v1;
 service AgarController {
   /* Turn On/Off Ring Light */
   rpc RingLightLamp (sila2.org.silastandard.core.agarcontroller.v1.RingLightLamp_Parameters) returns (sila2.org.silastandard.core.agarcontroller.v1.RingLightLamp_Responses) {}
-  /* Open Close Ring Light Motor */
+  /* Open/Close Ring Light Motor */
   rpc RingLightMotor (sila2.org.silastandard.core.agarcontroller.v1.RingLightMotor_Parameters) returns (sila2.org.silastandard.core.agarcontroller.v1.RingLightMotor_Responses) {}
+  /* Resetting Tip Count of Tip-Station */
+  rpc ResetTipCount (sila2.org.silastandard.core.agarcontroller.v1.ResetTipCount_Parameters) returns (sila2.org.silastandard.core.agarcontroller.v1.ResetTipCount_Responses) {}
+  /* Call Subroutine */
+  rpc CallSubroutine (sila2.org.silastandard.core.agarcontroller.v1.CallSubroutine_Parameters) returns (sila2.org.silastandard.core.agarcontroller.v1.CallSubroutine_Responses) {}
+  /* Start Process to Control Robot */
+  rpc RobotControlStartProcess (sila2.org.silastandard.core.agarcontroller.v1.RobotControlStartProcess_Parameters) returns (sila2.org.silastandard.core.agarcontroller.v1.RobotControlStartProcess_Responses) {}
+  /* Identify Selected Reference Colony */
+  rpc IdentifyColony (sila2.org.silastandard.core.agarcontroller.v1.IdentifyColony_Parameters) returns (sila2.org.silastandard.core.agarcontroller.v1.IdentifyColony_Responses) {}
+  /* Get remaining tips in the tip station */
+  rpc Get_GetTipCount (sila2.org.silastandard.core.agarcontroller.v1.Get_GetTipCount_Parameters) returns (sila2.org.silastandard.core.agarcontroller.v1.Get_GetTipCount_Responses) {}
+  /* Capturing detections of possible colonies */
+  rpc Get_CaptureColony (sila2.org.silastandard.core.agarcontroller.v1.Get_CaptureColony_Parameters) returns (sila2.org.silastandard.core.agarcontroller.v1.Get_CaptureColony_Responses) {}
 }
 
 /* Parameters for RingLightLamp */
@@ -19,6 +31,7 @@ message RingLightLamp_Parameters {
 
 /* Responses of RingLightLamp */
 message RingLightLamp_Responses {
+  sila2.org.silastandard.Boolean Status = 1;  /* Status for Turn On/Off Ring Light */
 }
 
 /* Parameters for RingLightMotor */
@@ -28,4 +41,68 @@ message RingLightMotor_Parameters {
 
 /* Responses of RingLightMotor */
 message RingLightMotor_Responses {
+  sila2.org.silastandard.Boolean Status = 1;  /* Status of Open/Close Ring Light Motor */
+}
+
+/* Parameters for ResetTipCount */
+message ResetTipCount_Parameters {
+  sila2.org.silastandard.Integer TipCount = 1;  /* TipCountValue; If all tip slots are filled, entry value = 96 */
+}
+
+/* Responses of ResetTipCount */
+message ResetTipCount_Responses {
+  sila2.org.silastandard.Integer Status = 1;  /* Status for Setting Count of Tip Station */
+}
+
+/* Parameters for CallSubroutine */
+message CallSubroutine_Parameters {
+  sila2.org.silastandard.String Routine = 1;  /* Routine; 'tip picking','colony picking','Straking1','Streaking2','DeepWell' */
+  sila2.org.silastandard.String Arg1 = 2;  /* Argument_1; Routine: 'tip picking' Then Arg1: offsetx, Routine: 'colony picking' Then Arg1: cell number, Routine: 'Streaking1' Then Arg1: cell number, */
+  sila2.org.silastandard.String Arg2 = 3;  /* Argument_2; Routine: 'tip picking' Then Arg2: offsety, Routine: 'colony picking' Then Arg2: Incoming or Outgoing Sequence, Routine: 'Streaking1' Then Arg2: type_selection (), */
+}
+
+/* Responses of CallSubroutine */
+message CallSubroutine_Responses {
+  sila2.org.silastandard.String Status = 1;  /* Status for Calling Subroutine */
+}
+
+/* Parameters for RobotControlStartProcess */
+message RobotControlStartProcess_Parameters {
+  sila2.org.silastandard.String OutputType = 1;  /* OutputType; 'Agar Plate' or 'Deep Well' */
+  sila2.org.silastandard.String StreakingType = 2;  /* StreakingType; 'Streaking Pattern 1' or 'Streaking Pattern 2' */
+  sila2.org.silastandard.String TransferType = 3;  /* TransferType; '1 to 1' or '1 to Many' */
+  sila2.org.silastandard.String Coordinates = 4;  /* Coordinates (list-string); co-ordinate values of the identified colonies */
+}
+
+/* Responses of RobotControlStartProcess */
+message RobotControlStartProcess_Responses {
+  sila2.org.silastandard.String DataValues = 1;  /* DataValues (list-string); for Robot_Control_START_Process */
+}
+
+/* Parameters for IdentifyColony */
+message IdentifyColony_Parameters {
+  sila2.org.silastandard.Integer ColonyValue = 1;  /* refVal(INT); Rerfernce colony selected */
+}
+
+/* Responses of IdentifyColony */
+message IdentifyColony_Responses {
+  sila2.org.silastandard.String Coordinates = 1;  /* Coordinates (list-string); Image and List of co-ordinates that needs to be passed to the robot via the 'robot_control_START_process' */
+}
+
+/* Parameters for GetTipCount */
+message Get_GetTipCount_Parameters {
+}
+
+/* Responses of GetTipCount */
+message Get_GetTipCount_Responses {
+  sila2.org.silastandard.Integer GetTipCount = 1;  /* Get remaining tips in the tip station */
+}
+
+/* Parameters for CaptureColony */
+message Get_CaptureColony_Parameters {
+}
+
+/* Responses of CaptureColony */
+message Get_CaptureColony_Responses {
+  sila2.org.silastandard.String CaptureColony = 1;  /* Capturing detections of possible colonies */
 }

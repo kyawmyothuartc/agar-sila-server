@@ -8,6 +8,10 @@ sila2 = "*"
 jinja2 = "*"
 typer = "*"
 numpy = "*"
+opencv-python = "*"
+pillow = "*"
+harvesters = "*"
+shapely = "*"
 agar-station = {editable = true, path = "."}
 
 [dev-packages]

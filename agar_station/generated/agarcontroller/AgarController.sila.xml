@@ -42,6 +42,27 @@
     &lt;Basic&gt;Integer&lt;/Basic&gt;
   &lt;/DataType&gt;
 &lt;/Property&gt; -->
+  <!--Start Properties are here-->
+  <Property>
+    <Identifier>GetTipCount</Identifier>
+    <DisplayName>Get Tip Count</DisplayName>
+    <Description>Get remaining tips in the tip station</Description>
+    <Observable>No</Observable>
+    <DataType>
+      <Basic>Integer</Basic>
+    </DataType>
+  </Property>
+  <Property>
+    <Identifier>CaptureColony</Identifier>
+    <DisplayName>Capture Colony</DisplayName>
+    <Description>Capturing detections of possible colonies</Description>
+    <Observable>No</Observable>
+    <DataType>
+      <Basic>String</Basic>
+    </DataType>
+  </Property>
+  <!--End Properties are here-->
+  <!--Start Commands are here-->
   <Command>
     <Identifier>RingLightLamp</Identifier>
     <DisplayName>Ring Light Lamp</DisplayName>
@@ -55,19 +76,19 @@
         <Basic>Boolean</Basic>
       </DataType>
     </Parameter>
-    <!-- &lt;Response&gt;
-    &lt;Identifier&gt;Status&lt;/Identifier&gt;
-    &lt;DisplayName&gt;Status&lt;/DisplayName&gt;
-    &lt;Description&gt;Status for mobile manipulator has successfully moved or not&lt;/Description&gt;
-    &lt;DataType&gt;
-      &lt;Basic&gt;Boolean&lt;/Basic&gt;
-    &lt;/DataType&gt;
-  &lt;/Response&gt; -->
+    <Response>
+      <Identifier>Status</Identifier>
+      <DisplayName>Status</DisplayName>
+      <Description>Status for Turn On/Off Ring Light</Description>
+      <DataType>
+        <Basic>Boolean</Basic>
+      </DataType>
+    </Response>
   </Command>
   <Command>
     <Identifier>RingLightMotor</Identifier>
     <DisplayName>Ring Light Motor</DisplayName>
-    <Description>Open Close Ring Light Motor</Description>
+    <Description>Open/Close Ring Light Motor</Description>
     <Observable>No</Observable>
     <Parameter>
       <Identifier>OnOff</Identifier>
@@ -77,13 +98,151 @@
         <Basic>Boolean</Basic>
       </DataType>
     </Parameter>
-    <!-- &lt;Response&gt;
-    &lt;Identifier&gt;Executed&lt;/Identifier&gt;
-    &lt;DisplayName&gt;Executed&lt;/DisplayName&gt;
-    &lt;Description&gt;Executed successfully or not&lt;/Description&gt;
-    &lt;DataType&gt;
-      &lt;Basic&gt;Boolean&lt;/Basic&gt;
-    &lt;/DataType&gt;
-  &lt;/Response&gt; -->
+    <Response>
+      <Identifier>Status</Identifier>
+      <DisplayName>Status</DisplayName>
+      <Description>Status of Open/Close Ring Light Motor</Description>
+      <DataType>
+        <Basic>Boolean</Basic>
+      </DataType>
+    </Response>
   </Command>
+  <Command>
+    <Identifier>ResetTipCount</Identifier>
+    <DisplayName>Reset Tip Count</DisplayName>
+    <Description>Resetting Tip Count of Tip-Station</Description>
+    <Observable>No</Observable>
+    <Parameter>
+      <Identifier>TipCount</Identifier>
+      <DisplayName>Tip Count</DisplayName>
+      <Description>TipCountValue; If all tip slots are filled, entry value = 96</Description>
+      <DataType>
+        <Basic>Integer</Basic>
+      </DataType>
+    </Parameter>
+    <Response>
+      <Identifier>Status</Identifier>
+      <DisplayName>Status</DisplayName>
+      <Description>Status for Setting Count of Tip Station</Description>
+      <DataType>
+        <Basic>Integer</Basic>
+      </DataType>
+    </Response>
+  </Command>
+  <Command>
+    <Identifier>CallSubroutine</Identifier>
+    <DisplayName>Call Subroutine</DisplayName>
+    <Description>Call Subroutine</Description>
+    <Observable>No</Observable>
+    <Parameter>
+      <Identifier>Routine</Identifier>
+      <DisplayName>Routine</DisplayName>
+      <Description>Routine; 'tip picking','colony picking','Straking1','Streaking2','DeepWell'</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Parameter>
+    <Parameter>
+      <Identifier>Arg1</Identifier>
+      <DisplayName>Argument_1</DisplayName>
+      <Description>Argument_1; 
+                Routine: 'tip picking' Then Arg1: offsetx,
+                Routine: 'colony picking' Then Arg1: cell number,
+                Routine: 'Streaking1' Then Arg1: cell number,</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Parameter>
+    <Parameter>
+      <Identifier>Arg2</Identifier>
+      <DisplayName>Argument_2</DisplayName>
+      <Description>Argument_2; 
+                Routine: 'tip picking' Then Arg2: offsety,
+                Routine: 'colony picking' Then Arg2: Incoming or Outgoing Sequence,
+                Routine: 'Streaking1' Then Arg2: type_selection (),</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Parameter>
+    <Response>
+      <Identifier>Status</Identifier>
+      <DisplayName>Status</DisplayName>
+      <Description>Status for Calling Subroutine</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Response>
+  </Command>
+  <Command>
+    <Identifier>RobotControlStartProcess</Identifier>
+    <DisplayName>Robot Control Start Process</DisplayName>
+    <Description>Start Process to Control Robot</Description>
+    <Observable>No</Observable>
+    <Parameter>
+      <Identifier>OutputType</Identifier>
+      <DisplayName>Output Type</DisplayName>
+      <Description>OutputType; 'Agar Plate' or 'Deep Well'</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Parameter>
+    <Parameter>
+      <Identifier>StreakingType</Identifier>
+      <DisplayName>Streaking Type</DisplayName>
+      <Description>StreakingType; 'Streaking Pattern 1' or 'Streaking Pattern 2'</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Parameter>
+    <Parameter>
+      <Identifier>TransferType</Identifier>
+      <DisplayName>Transfer Type</DisplayName>
+      <Description>TransferType; '1 to 1' or '1 to Many'</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Parameter>
+    <Parameter>
+      <Identifier>Coordinates</Identifier>
+      <DisplayName>Coordinates</DisplayName>
+      <Description>Coordinates (list-string); co-ordinate values of the identified colonies</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Parameter>
+    <Response>
+      <Identifier>DataValues</Identifier>
+      <DisplayName>DataValues</DisplayName>
+      <Description>DataValues (list-string); for Robot_Control_START_Process</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Response>
+  </Command>
+  <Command>
+    <Identifier>IdentifyColony</Identifier>
+    <DisplayName>Identify Colony</DisplayName>
+    <Description>Identify Selected Reference Colony</Description>
+    <Observable>No</Observable>
+    <Parameter>
+      <Identifier>ColonyValue</Identifier>
+      <DisplayName>Colony Value</DisplayName>
+      <Description>refVal(INT); Rerfernce colony selected</Description>
+      <DataType>
+        <Basic>Integer</Basic>
+      </DataType>
+    </Parameter>
+    <Response>
+      <Identifier>Coordinates</Identifier>
+      <DisplayName>Coordinates</DisplayName>
+      <Description>Coordinates (list-string); 
+                  Image and List of co-ordinates 
+                  that needs to be passed to the robot 
+                  via the 'robot_control_START_process'</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Response>
+  </Command>
+  <!--End Commands are here-->
 </Feature>

@@ -11,13 +11,30 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from typing import Iterable, Optional
 
-    from agarcontroller_types import RingLightLamp_Responses, RingLightMotor_Responses
-    from sila2.client import ClientMetadataInstance
+    from agarcontroller_types import (
+        CallSubroutine_Responses,
+        IdentifyColony_Responses,
+        ResetTipCount_Responses,
+        RingLightLamp_Responses,
+        RingLightMotor_Responses,
+        RobotControlStartProcess_Responses,
+    )
+    from sila2.client import ClientMetadataInstance, ClientUnobservableProperty
 
 
 class AgarControllerClient:
     """
     Agar Streaking SiLA2 compatible controller
+    """
+
+    GetTipCount: ClientUnobservableProperty[int]
+    """
+    Get remaining tips in the tip station
+    """
+
+    CaptureColony: ClientUnobservableProperty[str]
+    """
+    Capturing detections of possible colonies
     """
 
     def RingLightLamp(
@@ -32,6 +49,44 @@ class AgarControllerClient:
         self, OnOff: bool, *, metadata: Optional[Iterable[ClientMetadataInstance]] = None
     ) -> RingLightMotor_Responses:
         """
-        Open Close Ring Light Motor
+        Open/Close Ring Light Motor
+        """
+        ...
+
+    def ResetTipCount(
+        self, TipCount: int, *, metadata: Optional[Iterable[ClientMetadataInstance]] = None
+    ) -> ResetTipCount_Responses:
+        """
+        Resetting Tip Count of Tip-Station
+        """
+        ...
+
+    def CallSubroutine(
+        self, Routine: str, Arg1: str, Arg2: str, *, metadata: Optional[Iterable[ClientMetadataInstance]] = None
+    ) -> CallSubroutine_Responses:
+        """
+        Call Subroutine
+        """
+        ...
+
+    def RobotControlStartProcess(
+        self,
+        OutputType: str,
+        StreakingType: str,
+        TransferType: str,
+        Coordinates: str,
+        *,
+        metadata: Optional[Iterable[ClientMetadataInstance]] = None,
+    ) -> RobotControlStartProcess_Responses:
+        """
+        Start Process to Control Robot
+        """
+        ...
+
+    def IdentifyColony(
+        self, ColonyValue: int, *, metadata: Optional[Iterable[ClientMetadataInstance]] = None
+    ) -> IdentifyColony_Responses:
+        """
+        Identify Selected Reference Colony
         """
         ...

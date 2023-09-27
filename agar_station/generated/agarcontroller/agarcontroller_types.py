@@ -5,8 +5,45 @@ from typing import NamedTuple
 
 
 class RingLightLamp_Responses(NamedTuple):
-    pass
+    Status: bool
+    """
+    Status for Turn On/Off Ring Light
+    """
 
 
 class RingLightMotor_Responses(NamedTuple):
-    pass
+    Status: bool
+    """
+    Status of Open/Close Ring Light Motor
+    """
+
+
+class ResetTipCount_Responses(NamedTuple):
+    Status: int
+    """
+    Status for Setting Count of Tip Station
+    """
+
+
+class CallSubroutine_Responses(NamedTuple):
+    Status: str
+    """
+    Status for Calling Subroutine
+    """
+
+
+class RobotControlStartProcess_Responses(NamedTuple):
+    DataValues: str
+    """
+    DataValues (list-string); for Robot_Control_START_Process
+    """
+
+
+class IdentifyColony_Responses(NamedTuple):
+    Coordinates: str
+    """
+    Coordinates (list-string); 
+                  Image and List of co-ordinates 
+                  that needs to be passed to the robot 
+                  via the 'robot_control_START_process'
+    """

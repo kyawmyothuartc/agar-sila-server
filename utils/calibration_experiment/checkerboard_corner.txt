@@ -1,0 +1,7 @@
+top left : 741.72 19.67 3.29
+bottom left : 662.27 19.88 2.18
+bottom right : 661.36 -99.92 2.17
+
+top left : 4619, 3332
+bottom left : 4627, 479
+bottom right : 343, 479

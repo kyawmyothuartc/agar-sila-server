@@ -6,7 +6,14 @@ from typing import TYPE_CHECKING
 
 from sila2.server import FeatureImplementationBase, MetadataDict
 
-from .agarcontroller_types import RingLightLamp_Responses, RingLightMotor_Responses
+from .agarcontroller_types import (
+    CallSubroutine_Responses,
+    IdentifyColony_Responses,
+    ResetTipCount_Responses,
+    RingLightLamp_Responses,
+    RingLightMotor_Responses,
+    RobotControlStartProcess_Responses,
+)
 
 if TYPE_CHECKING:
     from ...server import Server
@@ -22,6 +29,26 @@ class AgarControllerBase(FeatureImplementationBase, ABC):
         super().__init__(parent_server=parent_server)
 
     @abstractmethod
+    def get_GetTipCount(self, *, metadata: MetadataDict) -> int:
+        """
+        Get remaining tips in the tip station
+
+        :param metadata: The SiLA Client Metadata attached to the call
+        :return: Get remaining tips in the tip station
+        """
+        pass
+
+    @abstractmethod
+    def get_CaptureColony(self, *, metadata: MetadataDict) -> str:
+        """
+        Capturing detections of possible colonies
+
+        :param metadata: The SiLA Client Metadata attached to the call
+        :return: Capturing detections of possible colonies
+        """
+        pass
+
+    @abstractmethod
     def RingLightLamp(self, OnOff: bool, *, metadata: MetadataDict) -> RingLightLamp_Responses:
         """
         Turn On/Off Ring Light
@@ -31,18 +58,123 @@ class AgarControllerBase(FeatureImplementationBase, ABC):
 
         :param metadata: The SiLA Client Metadata attached to the call
 
+        :return:
+
+            - Status: Status for Turn On/Off Ring Light
+
+
         """
         pass
 
     @abstractmethod
     def RingLightMotor(self, OnOff: bool, *, metadata: MetadataDict) -> RingLightMotor_Responses:
         """
-        Open Close Ring Light Motor
+        Open/Close Ring Light Motor
 
 
         :param OnOff: true-On; false-Off Ring Light Motor
 
         :param metadata: The SiLA Client Metadata attached to the call
+
+        :return:
+
+            - Status: Status of Open/Close Ring Light Motor
+
+
+        """
+        pass
+
+    @abstractmethod
+    def ResetTipCount(self, TipCount: int, *, metadata: MetadataDict) -> ResetTipCount_Responses:
+        """
+        Resetting Tip Count of Tip-Station
+
+
+        :param TipCount: TipCountValue; If all tip slots are filled, entry value = 96
+
+        :param metadata: The SiLA Client Metadata attached to the call
+
+        :return:
+
+            - Status: Status for Setting Count of Tip Station
+
+
+        """
+        pass
+
+    @abstractmethod
+    def CallSubroutine(self, Routine: str, Arg1: str, Arg2: str, *, metadata: MetadataDict) -> CallSubroutine_Responses:
+        """
+        Call Subroutine
+
+
+        :param Routine: Routine; 'tip picking','colony picking','Straking1','Streaking2','DeepWell'
+
+        :param Arg1: Argument_1;
+                Routine: 'tip picking' Then Arg1: offsetx,
+                Routine: 'colony picking' Then Arg1: cell number,
+                Routine: 'Streaking1' Then Arg1: cell number,
+
+
+        :param Arg2: Argument_2;
+                Routine: 'tip picking' Then Arg2: offsety,
+                Routine: 'colony picking' Then Arg2: Incoming or Outgoing Sequence,
+                Routine: 'Streaking1' Then Arg2: type_selection (),
+
+
+        :param metadata: The SiLA Client Metadata attached to the call
+
+        :return:
+
+            - Status: Status for Calling Subroutine
+
+
+        """
+        pass
+
+    @abstractmethod
+    def RobotControlStartProcess(
+        self, OutputType: str, StreakingType: str, TransferType: str, Coordinates: str, *, metadata: MetadataDict
+    ) -> RobotControlStartProcess_Responses:
+        """
+        Start Process to Control Robot
+
+
+        :param OutputType: OutputType; 'Agar Plate' or 'Deep Well'
+
+        :param StreakingType: StreakingType; 'Streaking Pattern 1' or 'Streaking Pattern 2'
+
+        :param TransferType: TransferType; '1 to 1' or '1 to Many'
+
+        :param Coordinates: Coordinates (list-string); co-ordinate values of the identified colonies
+
+        :param metadata: The SiLA Client Metadata attached to the call
+
+        :return:
+
+            - DataValues: DataValues (list-string); for Robot_Control_START_Process
+
+
+        """
+        pass
+
+    @abstractmethod
+    def IdentifyColony(self, ColonyValue: int, *, metadata: MetadataDict) -> IdentifyColony_Responses:
+        """
+        Identify Selected Reference Colony
+
+
+        :param ColonyValue: refVal(INT); Rerfernce colony selected
+
+        :param metadata: The SiLA Client Metadata attached to the call
+
+        :return:
+
+            - Coordinates: Coordinates (list-string);
+                  Image and List of co-ordinates
+                  that needs to be passed to the robot
+                  via the 'robot_control_START_process'
+
 
         """
         pass

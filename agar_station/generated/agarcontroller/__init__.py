@@ -2,7 +2,14 @@
 from .agarcontroller_base import AgarControllerBase
 from .agarcontroller_client import AgarControllerClient
 from .agarcontroller_feature import AgarControllerFeature
-from .agarcontroller_types import RingLightLamp_Responses, RingLightMotor_Responses
+from .agarcontroller_types import (
+    CallSubroutine_Responses,
+    IdentifyColony_Responses,
+    ResetTipCount_Responses,
+    RingLightLamp_Responses,
+    RingLightMotor_Responses,
+    RobotControlStartProcess_Responses,
+)
 
 __all__ = [
     "AgarControllerBase",
@@ -10,4 +17,8 @@ __all__ = [
     "AgarControllerClient",
     "RingLightLamp_Responses",
     "RingLightMotor_Responses",
+    "ResetTipCount_Responses",
+    "CallSubroutine_Responses",
+    "RobotControlStartProcess_Responses",
+    "IdentifyColony_Responses",
 ]

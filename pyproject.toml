@@ -19,17 +19,3 @@ include = ["agar_station*"]
     "*/*.sila.xml",
     "*/*.proto",
 ]
-
-[tool.black]
-line-length = 120
-fast = true
-
-[tool.isort]
-line_length = 120
-profile = "black"
-skip = ["build/"]
-
-[tool.flake8]
-max-line-length = 120
-extend-ignore = "E203,E501,W293"
-exclude = ["build/", "main.py"]
