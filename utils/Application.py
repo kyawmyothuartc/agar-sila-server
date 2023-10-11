@@ -979,6 +979,7 @@ class SiLA:
         #check if input and output workplate barcodes are registered and prompt operator to register them if not 
         #if start of the process
 
+        co_ordinates = [(0, 'Null'), (1, [[-21.78294535010336, -452.0303673846248, 10.146444509021368], [0.079, 0.907, 0.413, -0.006]]), (2, 'Null'), (3, 'Null'), (4, 'Null'), (5, 'Null'), (6, 'Null'), (7, 'Null')]
 
         #this is a dummy value set for the tip counter, but later needs to be input from a input field on GUI
         abb_connector.global_tip_counter(self.Robot_connect, 1, 0)
@@ -1070,7 +1071,10 @@ class SiLA:
         colJSon = {"name": "A",
                    "age": "B"}
         
-        return colJSon
+        image = "0E5A6C"
+        coordinate = "1,2,5,9"
+        
+        return image, coordinate
 
 class SiLA_sub:
     def __init__(self):

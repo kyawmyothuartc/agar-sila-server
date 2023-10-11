@@ -233,10 +233,20 @@
       </DataType>
     </Parameter>
     <Response>
+      <Identifier>Image</Identifier>
+      <DisplayName>Image</DisplayName>
+      <Description>Image (String); 
+                  Image that needs to be passed to the robot 
+                  via the 'robot_control_START_process'</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Response>
+    <Response>
       <Identifier>Coordinates</Identifier>
       <DisplayName>Coordinates</DisplayName>
       <Description>Coordinates (list-string); 
-                  Image and List of co-ordinates 
+                  List of co-ordinates 
                   that needs to be passed to the robot 
                   via the 'robot_control_START_process'</Description>
       <DataType>

@@ -86,7 +86,8 @@ message IdentifyColony_Parameters {
 
 /* Responses of IdentifyColony */
 message IdentifyColony_Responses {
-  sila2.org.silastandard.String Coordinates = 1;  /* Coordinates (list-string); Image and List of co-ordinates that needs to be passed to the robot via the 'robot_control_START_process' */
+  sila2.org.silastandard.String Image = 1;  /* Image (String); Image that needs to be passed to the robot via the 'robot_control_START_process' */
+  sila2.org.silastandard.String Coordinates = 2;  /* Coordinates (list-string); List of co-ordinates that needs to be passed to the robot via the 'robot_control_START_process' */
 }
 
 /* Parameters for GetTipCount */

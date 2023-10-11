@@ -170,8 +170,12 @@ class AgarControllerBase(FeatureImplementationBase, ABC):
 
         :return:
 
+            - Image: Image (String);
+                  Image that needs to be passed to the robot
+                  via the 'robot_control_START_process'
+
             - Coordinates: Coordinates (list-string);
-                  Image and List of co-ordinates
+                  List of co-ordinates
                   that needs to be passed to the robot
                   via the 'robot_control_START_process'
 

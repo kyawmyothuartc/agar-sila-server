@@ -78,7 +78,7 @@ class AgarControllerImpl(AgarControllerBase):
 
     def IdentifyColony(self, ColonyValue: int, *, metadata: MetadataDict) -> IdentifyColony_Responses:
         self.logger.info(f"IdentifyColony Call Routine - {ColonyValue}")
-        response = self.agr.colony_identify(ColonyValue)
-        self.logger.info(f"IdentifyColony Response - {response}")
-        return response
+        image, coordinate = self.agr.colony_identify(ColonyValue)
+        self.logger.info(f"IdentifyColony image - {image} , Coordinates: {coordinate}")
+        return image, coordinate
         #raise NotImplementedError  # TODO
